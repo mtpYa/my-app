@@ -1,24 +1,30 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useDispatch } from 'react-redux';
+import { addTodoItem } from './actions/todos';
+import useTodosSelectors from './selectors/todos';
+import AddNewListItemForm from './components/add-new-listitem-form';
 
-function App() {
+function App(): React.ReactElement {
+  const { todos } = useTodosSelectors();
+  const todosList = todos.map((elem, idx: number) => (
+    <div key={idx}>{elem.text}</div>
+  ));
+  const dispatch = useDispatch();
+  const inputSubmitHandler = (value) => dispatch(addTodoItem(value));
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <div className="App-content">
+        {todosList}
+        <div className="App-content__add-form">
+          <AddNewListItemForm onInputSubmit={inputSubmitHandler}/>
+        </div>
+      </div>
     </div>
   );
 }

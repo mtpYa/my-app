@@ -1,10 +1,6 @@
-import { ADD_TODO } from '../actions/todos';
+import { ADD_TODO, ADD_TODOS } from '../actions/todos';
 
-const initialState = [
-  { text: 'Learn React' },
-  { text: 'Learn Redux' },
-  { text: 'Build something fun!' }
-]
+const initialState = [];
 
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
@@ -12,6 +8,10 @@ export default function todosReducer(state = initialState, action) {
       return [
         ...state,
         { text: action.payload }
+      ];
+    case ADD_TODOS:
+      return [
+        ...action.payload
       ];
     default:
       return state

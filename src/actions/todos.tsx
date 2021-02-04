@@ -1,4 +1,5 @@
-export const ADD_TODO = 'todos/add';
+export const ADD_TODO = 'todos/add_item';
+export const ADD_TODOS = 'todos/add_list';
 
 export function addTodoItem(todoItem) {
   return {
@@ -6,3 +7,11 @@ export function addTodoItem(todoItem) {
     payload: todoItem
   };
 }
+
+export function addTodos(todos) {
+  return {
+    type: ADD_TODOS,
+    payload: todos
+  };
+}
+

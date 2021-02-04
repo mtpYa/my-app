@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addTodoItem } from './actions/todos';
 import useTodosSelectors from './selectors/todos';
 import AddNewListItemForm from './components/add-new-listitem-form';
+import { useFetchTodos } from './common/services/api';
 
 function App(): React.ReactElement {
   const { todos } = useTodosSelectors();
@@ -13,6 +14,8 @@ function App(): React.ReactElement {
   ));
   const dispatch = useDispatch();
   const inputSubmitHandler = (value) => dispatch(addTodoItem(value));
+
+  useFetchTodos();
 
   return (
     <div className="App">
